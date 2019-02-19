@@ -1,0 +1,1 @@
+window.console.log('我只是个DEMO， 我什么都不知道');
