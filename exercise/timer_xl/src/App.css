@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+  width: 300px;
+  height: 600px;
+  border: solid 1px;
+  margin: 10px 0 0 10px;
+  background-color: black;
+  color: aliceblue;
+}
+
+.ShowTime {
+  width: 298px;
+  height: 100px;
+  font-size: 60pt;
+}
+
+.ShowTimer {
+  height: 150px;
+}
+
+.ResetOrCount {
+  width: 50px;
+  height: 50px;
+  margin-top:30px;
+  background-color: darkgray;
+}
+
+.StartOrPause {
+  margin-left: 100px;
+  margin-top:30px;
+  width: 50px;
+  height: 50px;
+  background-color: darkgray;
+}
+
+.History {
+  margin-top: 10px;
+  width: 280px;
+  height: 200px;
+  margin-left: 9px;
+}
+
+.History ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.Count {
+  float: left;
+  margin-left: 10px;
+}
+.SpecificTime {
+  float: left;
+  margin-left: 150px;
+}
