@@ -1,7 +1,7 @@
 # React 练习题 - 秒表
 
 ## 效果图
-![image](https://user-gold-cdn.xitu.io/2018/9/21/165fa7cbea1afd84?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
+![image](./img/clock.webp)
 
 ## 要求
  - 按下右侧“启动”按钮，这个按钮就会变成“停止”，同时上面的数字时钟开始计时；按下“停止”按钮，数字时钟停止计时。
