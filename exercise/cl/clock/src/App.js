@@ -1,77 +1,77 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import './App.css';
 
 class App extends Component {
-  constructor() {
+  constructor(){
     super();
     this.state={
-      flag1:0
-    }
+      left1:0
+    };
   }
 
-  // var myright = document.getElementById("right");
+  leftAdd(){
+      this.setState({left1:this.state.left1++});
+      console.log(this.state.left1);
+  }
 
   render() {
-    this.ref.left.onclick=() => {
-       this.setState({flag1:++this.state.flag1});
-     }
+
     return (
       <div className="App">
       <header>
-        <span class="ss">
+        <span className="ss">
           秒&nbsp;&nbsp;&nbsp;&nbsp;表
         </span>
         </header>
-        <div class="container">
-        <div class="top">
-          <div class="one">
+        <div className="container">
+        <div className="top">
+          <div className="one">
             <span id="number">
               00:00.34
             </span>
           </div>
-          <div class="two">
-            <div class="left_a" ref="left">
-              <div class="left_b">
+          <div className="two">
+            <div className="left_a" id="left" onClick = {this.leftAdd()} >
+              <div className="left_b">
                 复位
               </div>
             </div>
-            <div class="right_a" ref="right">
-              <div class="right_b">
-                {this.flag1 === 0 ? "启动" : "结束" }
+            <div className="right_a" id="right">
+              <div className="right_b">
+                {this.state.left1 === 0 ? "启动" : "结束" }
               </div>
             </div>
           </div>
         </div>
-        <div class="record">
+        <div className="record">
           <ul>
-            <li class="re_li">
-              <span class="sp_text">计次1</span>
-              <span class="sp_time">00：11.01</span>
+            <li className="re_li">
+              <span className="sp_text">计次1</span>
+              <span className="sp_time">00：11.01</span>
             </li>
-            <li class="re_li">
-              <span class="sp_text">计次1</span>
-              <span class="sp_time">00：11.01</span>
+            <li className="re_li">
+              <span className="sp_text">计次1</span>
+              <span className="sp_time">00：11.01</span>
             </li>
-            <li class="re_li">
-              <span class="sp_text">计次1</span>
-              <span class="sp_time">00：11.01</span>
+            <li className="re_li">
+              <span className="sp_text">计次1</span>
+              <span className="sp_time">00：11.01</span>
             </li>
-            <li class="re_li">
-              <span class="sp_text">计次1</span>
-              <span class="sp_time">00：11.01</span>
+            <li className="re_li">
+              <span className="sp_text">计次1</span>
+              <span className="sp_time">00：11.01</span>
             </li>
-            <li class="re_li">
-              <span class="sp_text">计次1</span>
-              <span class="sp_time">00：11.01</span>
+            <li className="re_li">
+              <span className="sp_text">计次1</span>
+              <span className="sp_time">00：11.01</span>
             </li>
-            <li class="re_li">
-              <span class="sp_text">计次1</span>
-              <span class="sp_time">00：11.01</span>
+            <li className="re_li">
+              <span className="sp_text">计次1</span>
+              <span className="sp_time">00：11.01</span>
             </li>
           </ul>
         </div>
-        <div class="footer">
+        <div className="footer">
           <ul>
             <li></li>
             <li></li>
