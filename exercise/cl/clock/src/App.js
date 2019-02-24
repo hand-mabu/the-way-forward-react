@@ -7,8 +7,12 @@ class App extends Component {
     this.state={
       left1:0,
       right1:0,
-      // 显示秒表
+      // 显示在页面的秒数
       timedif:"00:00.0",
+      // 计次数组
+      count:[],
+      // innerHTML
+      inner:[]
     };
     // 开始时间
     this.starttime = "";
@@ -17,13 +21,22 @@ class App extends Component {
     this.calcTime = this.calcTime.bind(this);
     // 定时器
     this.timer = 1;
+    this.printHtml = this.printHtml.bind(this);
   }
 
   leftAdd(){
     if (this.state.right1%2 == 0){
         this.setState({timedif:"00:00.00"});
+        this.setState({ 'count': []});
+        this.setState({ 'inner': []});
+    }else{
+      console.log(this.state.timedif);
+      console.log(this.state.count.length);
+      this.setState({ 'count': [...this.state.count, this.state.timedif]});
+      this.printHtml();
+
     }
-  }
+  };
   calcTime(){
     var myDate1 = new Date();
     var tmp = myDate1.valueOf()-this.starttime;
@@ -33,7 +46,7 @@ class App extends Component {
     if (sec<10){sec = "0"+sec};
     var ms = Math.round((tmp%1000)/10)
     this.setState({timedif:min+":"+sec+"."+ms});
-  }
+  };
   rightAdd(){
 
     if (this.state.right1%2 ==0){
@@ -46,7 +59,27 @@ class App extends Component {
       window.clearInterval(this.timer);
     };
    this.setState({right1:++this.state.right1});
-  }
+ };
+ // printHtml(){
+      // var div = document.getElementById("ul");
+ //   var htmlstr1 = '<li className="re_li">';
+ //   var htmlstr4 = '</li>';
+ //   var htmlstr = '';
+ //   for (var i = 0;i < this.state.count.length;i++){
+ //     var htmlstr2 = '<span className="sp_text">计次'+(i+1)+'</span>';
+ //     var htmlstr3 = '<span className="sp_time">'+this.state.count[i]+'</span>';
+ //      htmlstr = htmlstr + htmlstr1 + htmlstr2 + htmlstr3 + htmlstr4;
+ //   }
+ //   ul.innerHTML = htmlstr;
+ // };
+
+   printHtml(){
+    console.log( this.state.count.length);
+     for(var i = 0;i < this.state.count.length;i++){
+       console.log(i);
+       this.setState({'inner':[...this.state.inner,<li key={i} className="re_li"><span className="sp_text">计次{i+1}</span><span className="sp_time">{this.state.count[i]}</span></li>]});
+     }
+   }
   render() {
 
     return (
@@ -77,31 +110,11 @@ class App extends Component {
           </div>
         </div>
         <div className="record">
-          <ul>
-            <li className="re_li">
-              <span className="sp_text">计次1</span>
-              <span className="sp_time">00：11.01</span>
-            </li>
-            <li className="re_li">
-              <span className="sp_text">计次1</span>
-              <span className="sp_time">00：11.01</span>
-            </li>
-            <li className="re_li">
-              <span className="sp_text">计次1</span>
-              <span className="sp_time">00：11.01</span>
-            </li>
-            <li className="re_li">
-              <span className="sp_text">计次1</span>
-              <span className="sp_time">00：11.01</span>
-            </li>
-            <li className="re_li">
-              <span className="sp_text">计次1</span>
-              <span className="sp_time">00：11.01</span>
-            </li>
-            <li className="re_li">
-              <span className="sp_text">计次1</span>
-              <span className="sp_time">00：11.01</span>
-            </li>
+          <ul id="ul">
+
+            {this.state.inner}
+
+
           </ul>
         </div>
         <div className="footer">
