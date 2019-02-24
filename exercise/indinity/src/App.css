@@ -1,0 +1,171 @@
+/* 秒表 - 顶部标题栏样式 */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    min-width: 300px;
+    width: 100%;
+    height: 100%;
+
+    background: #242424;
+}
+
+/* 顶部 - 标题栏样式 */
+.header {
+    width: 100%;
+    /*height: 9%;*/
+    /*height: 5%;*/
+    line-height: 3rem;
+    /*padding: 0.5rem 0;*/
+    color: #fff;
+    font-size: 0.7rem;
+    text-align: center;
+    font-weight: lighter;
+}
+
+/* 主体部分 - 时间展示、计次 */
+.main {
+    position: relative;
+    width: 100%;
+    height: 82%;
+    background: #353535;
+
+}
+
+/* 主体部分 - 时间展示 */
+.showTime {
+    display: flex;
+    width: 100%;
+    height: 70%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.showTime p {
+    padding: 2.5rem 0 0;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 3.6rem;
+}
+
+.showTime > label {
+    display: inline-flex;
+    margin: 0 1.5rem;
+    width: 5.6rem;
+    height: 5.6rem;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.showTime .resCountLab {
+    border: 0.1rem solid rgba(128, 128, 128, 0.53);
+}
+
+.showTime .onOffLab {
+    border: 0.1rem solid rgba(0, 178, 109, 0.3);
+}
+
+.showTime .resCountBtn, .showTime .onOffBtn {
+    display: inline-block;
+    width: 5.5rem;
+    height: 5.5rem;
+    border-radius: 50%;
+    border: 1px solid #353535;
+    color: #fff;
+}
+
+.showTime .resCountBtn {
+    background: rgba(128, 128, 128, 0.53);
+}
+
+.showTime .onOffBtn {
+    background: rgba(0, 178, 109, 0.3);
+}
+
+/* 主体部分 - 计次展示 */
+.count {
+    box-sizing: border-box;
+    width: 100%;
+    height: 30%;
+    padding: 0.5rem;
+}
+
+.count ul {
+    width: 100%;
+    height: 100%;
+    line-height: 2rem;
+    border-bottom: 1px solid #5b5b5b;
+    border-top: 1px solid #5b5b5b;
+    color: #fff;
+    overflow: auto;
+}
+
+.count ul li {
+    box-sizing: border-box;
+    width: 100%;
+    /*flex-direction: column;*/
+    text-decoration: none;
+    list-style-type: none;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.count ul li.item {
+    display: inline-flex;
+    border-top: 1px solid #5b5b5b;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.red {
+    color: #c34002;
+}
+
+.green {
+    color: #0a952e;
+}
+.white{
+    color: #fff;
+}
+/* 底部样式 - 导航栏 */
+.footer {
+    position: relative;
+    width: 100%;
+    height: 9%;
+}
+
+.footer ul {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.footer ul li {
+    display: inline-flex;
+    box-sizing: border-box;
+    height: 100%;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px dotted #ffffff;
+    margin-left: -1px;
+
+    flex-direction: column;
+
+}
+
+.footer ul li img {
+    width: 2.1rem;
+}
+
+.footer ul li span {
+    display: inline-flex;
+    color: white;
+    font-size: 0.7rem;
+}
