@@ -12,12 +12,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
  - 执行`npm start` 启动应用
  
 ### 3、实现思路
- - 上：标题栏（秒表）
- - 中：两部分
-    - 计时模块：
-        - 时间展示
-        - 复位/计次按钮
-        - 启动/停止按钮
-    - 计次模块：
-        - 点击一次计次，计次数添加一次
- - 底：导航栏（秒表&logo）
+ - 秒表：***App组件***
+     - 上：标题栏（秒表）：***SecHeader组件***
+     - 中：两部分：***SecMain组件***
+        - 计时模块：***SecTimeShow组件***
+            - 时间展示
+            - 复位/计次按钮
+            - 启动/停止按钮
+        - 计次模块：***SecCountTime组件***
+            - 点击一次计次，计次数添加一次
+     - 底：导航栏（秒表&logo）：***SecFooter组件***

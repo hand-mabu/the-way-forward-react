@@ -14,8 +14,8 @@ class SecHeader extends React.Component {
     }
 }
 
-// 创建SecMain组件，即为秒表工具的主要部门——计时模块
-class SecMain extends React.Component {
+// 创建SecTimeShow组件,即为计时模块
+class SecTimeShow extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,27 +23,19 @@ class SecMain extends React.Component {
             resCount: false,
             // 若为false即为启动按钮，为true即为关闭按钮
             onOff: false,
-            time: 0,
-            timeLog: [],
-            length: 0
         };
         // 启停计时
         this.onOffTime = this.onOffTime.bind(this);
-        this.startTime = this.startTime.bind(this);
-        this.stopTime = this.stopTime.bind(this);
-
         // 计次或重置
         this.resCountTime = this.resCountTime.bind(this);
-        this.countTime = this.countTime.bind(this);
-        this.resetTime = this.resetTime.bind(this);
     }
 
     // 判断是开始计时还是停止计时
     onOffTime(e) {
         if (this.state.onOff) {
-            this.stopTime();
+            this.props.stopTime();
         } else {
-            this.startTime();
+            this.props.startTime();
         }
         this.setState({
             resCount: !this.state.resCount,
@@ -51,12 +43,96 @@ class SecMain extends React.Component {
         });
     }
 
+    // 计次或复位
+    resCountTime() {
+        if (this.state.onOff) {
+            this.props.countTime();
+        } else {
+            this.props.resetTime();
+        }
+    }
+
+
+    render() {
+        var resCountStr = this.state.resCount ? '计次' : '复位';
+        var onOffStr = this.state.onOff ? '关闭' : '启动';
+        var msec = parseInt(this.props.time % 100);
+
+        var sec = parseInt(this.props.time / 100 % 60);
+        var min = parseInt(this.props.time / 100 / 60 % 60);
+        var hour = parseInt(this.props.time / 100 / 60 / 60);
+
+        return (
+            <div className="showTime">
+                <p ref={r => this._p = r}>{hour < 10 ? '0' + hour : hour}:{min < 10 ? '0' + min : min}:{sec < 10 ? '0' + sec : sec}.{msec < 10 ? '0' + msec : msec}</p>
+                <label className="resCountLab">
+                    <button className="resCountBtn" onClick={this.resCountTime}>{resCountStr}</button>
+                </label>
+                <label className="onOffLab">
+                    <button className="onOffBtn" onClick={this.onOffTime}>{onOffStr}</button>
+                </label>
+            </div>
+        );
+    }
+}
+
+// SecCountTime组件,即计次模块
+class SecCountTime extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        var length = this.props.length;
+        var colorArr = ['red', 'green', 'white'];
+        return (
+            <div className="count">
+                <ul>
+                    <li>计次</li>
+                    {
+                        this.props.timeLog.map(function (item, index) {
+                            var classStr = "item " + colorArr[index % colorArr.length];
+                            return (
+                                <li className={classStr}>
+                                    <span>计次{length - index}</span>
+                                    <span>{item}</span>
+                                </li>);
+                        })
+                    }
+                </ul>
+            </div>
+        );
+    }
+
+}
+
+// 创建SecMain组件，即为秒表工具的主要部门——计时模块，包括SecTimeShow组件、SecCountTime组件两部分
+class SecMain extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            time: 0,
+            timeLog: [],
+            length: 0
+        };
+        // 启停计时
+        // this.onOffTime = this.onOffTime.bind(this);
+        this.startTime = this.startTime.bind(this);
+        this.stopTime = this.stopTime.bind(this);
+
+        // 计次或重置
+        // this.resCountTime = this.resCountTime.bind(this);
+        this.countTime = this.countTime.bind(this);
+        this.resetTime = this.resetTime.bind(this);
+    }
+
     // 开始计时
     startTime() {
         this.timer = setInterval(() => {
             this.setState({
                 time: ++this.state.time
-            })
+            });
         }, 10);
     }
 
@@ -65,20 +141,10 @@ class SecMain extends React.Component {
         clearInterval(this.timer);
     }
 
-    // 计次或复位
-    resCountTime() {
-        if (this.state.onOff) {
-            this.countTime();
-        } else {
-            this.resetTime();
-        }
-    }
-
     // 计次
     countTime() {
         var tempArr = this.state.timeLog;
-        tempArr.unshift(this.refs.timeInfo.innerHTML);
-
+        tempArr.unshift(this._sectimeshow._p.innerHTML);
 
         this.setState({
             timeLog: tempArr,
@@ -96,47 +162,14 @@ class SecMain extends React.Component {
     }
 
     render() {
-        var resCountStr = this.state.resCount ? '计次' : '复位';
-        var onOffStr = this.state.onOff ? '关闭' : '启动';
-        var length = this.state.length;
-        var colorArr = ['red', 'green', 'white'];
-
-        var msec = parseInt(this.state.time % 100);
-        var sec = parseInt(this.state.time / 100 % 60);
-        var min = parseInt(this.state.time / 100 / 60 % 60);
-        var hour = parseInt(this.state.time / 100 / 60 / 60);
-
         return (<div className="main">
-            <div className="showTime">
-                <p ref="timeInfo">{hour < 10 ? '0' + hour : hour}:{min < 10 ? '0' + min : min}:{sec < 10 ? '0' + sec : sec}.{msec < 10 ? '0' + msec : msec}</p>
-                <label className="resCountLab">
-                    <button className="resCountBtn" onClick={this.resCountTime}>{resCountStr}</button>
-                </label>
-                <label className="onOffLab">
-                    <button className="onOffBtn" onClick={this.onOffTime}>{onOffStr}</button>
-                </label>
-            </div>
-            <div className="count">
-                <ul>
-                    <li>计次</li>
-                    {
-
-                        this.state.timeLog.map(function (item, index) {
-                            var classStr = "item " + colorArr[index % colorArr.length];
-                            return (
-                                <li className={classStr}>
-                                    <span>计次{length - index}</span>
-                                    <span>{item}</span>
-                                </li>)
-                                ;
-                        })
-                    }
-                </ul>
-            </div>
+            <SecTimeShow ref={r => this._sectimeshow = r} time={this.state.time}
+                         startTime={this.startTime} stopTime={this.stopTime} countTime={this.countTime}
+                         resetTime={this.resetTime}/>
+            <SecCountTime length={this.state.length} timeLog={this.state.timeLog}/>
         </div>);
     }
 }
-
 
 // 创建SecFooter组件，即为秒表工具的底部导航栏部分
 class SecFooter extends React.Component {
