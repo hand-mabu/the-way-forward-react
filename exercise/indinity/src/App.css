@@ -4,6 +4,15 @@
     padding: 0;
 }
 
+button {
+    border: none;
+}
+
+button:focus {
+    border: none;
+    outline: none;
+}
+
 .container {
     min-width: 300px;
     width: 100%;
@@ -128,9 +137,11 @@
 .green {
     color: #0a952e;
 }
-.white{
+
+.white {
     color: #fff;
 }
+
 /* 底部样式 - 导航栏 */
 .footer {
     position: relative;
