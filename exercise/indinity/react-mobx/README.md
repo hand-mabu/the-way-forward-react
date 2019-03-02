@@ -21,8 +21,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
             - 启动/停止按钮
         - 计次模块：***SecCountTime组件***
             - 点击一次计次，计次数添加一次
-     - 底：导航栏（秒表&logo）：***SecFooter组件***
-     
+     - 下：导航栏（秒表&logo）：***SecFooter组件***
+
+以上面模块分析为基础，结合mobx实现。
+ - 【上】、【下】两部分目前为固定不变的部分，因此不需要根据任何属性的变化进行自动刷新；
+ - 【中】为主要更新部分，通过`obversable`对`appState`属性进行监控、`action`对事件（属性）的处理，再结合`observer`对react组件进行监控，使整个组件在已使用的`observable`发生变化时，可以重新渲染。
+
 ### 4、环境搭建过程 
  - `create-react-app react-mobx`
  - `npm install --save-dev mobx`
