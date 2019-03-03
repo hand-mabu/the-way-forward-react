@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import './App.css';
 import seconds from './seconds.png';
+import Tool from './tools.js';
 
 // 创建SecHeader组件，即为秒表工具的顶部标题栏
 class SecHeader extends React.Component {
@@ -56,15 +57,11 @@ class SecTimeShow extends React.Component {
     render() {
         var resCountStr = this.state.resCount ? '计次' : '复位';
         var onOffStr = this.state.onOff ? '关闭' : '启动';
-        var msec = parseInt(this.props.time % 100);
 
-        var sec = parseInt(this.props.time / 100 % 60);
-        var min = parseInt(this.props.time / 100 / 60 % 60);
-        var hour = parseInt(this.props.time / 100 / 60 / 60);
 
         return (
             <div className="showTime">
-                <p ref={r => this._p = r}>{hour < 10 ? '0' + hour : hour}:{min < 10 ? '0' + min : min}:{sec < 10 ? '0' + sec : sec}.{msec < 10 ? '0' + msec : msec}</p>
+                <p ref={r => this._p = r}>{Tool.calTime(this.props.time)}</p>
                 <label className="resCountLab">
                     <button className="resCountBtn" onClick={this.resCountTime}>{resCountStr}</button>
                 </label>
@@ -163,10 +160,15 @@ class SecMain extends React.Component {
 
     render() {
         return (<div className="main">
-            <SecTimeShow ref={r => this._sectimeshow = r} time={this.state.time}
-                         startTime={this.startTime} stopTime={this.stopTime} countTime={this.countTime}
+            <SecTimeShow ref={r => this._sectimeshow = r}
+                         time={this.state.time}
+                         startTime={this.startTime}
+                         stopTime={this.stopTime}
+                         countTime={this.countTime}
                          resetTime={this.resetTime}/>
-            <SecCountTime length={this.state.length} timeLog={this.state.timeLog}/>
+
+            <SecCountTime length={this.state.length}
+                          timeLog={this.state.timeLog}/>
         </div>);
     }
 }
