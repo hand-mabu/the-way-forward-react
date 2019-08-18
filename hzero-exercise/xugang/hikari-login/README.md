@@ -12,7 +12,7 @@
 1. 请先开启隔壁项目
 2. `npm install` 如遇见 `webpack-dev-server` 引用全局问题，请卸载全局的(斜眼笑)
 3. `npm start` (引用的react自带的打包技术，没有任何改编)
-4. 访问 [http://localhost:3000](3000) 端口开启项目
+4. 访问 [http://localhost:3000](http://localhost:3000) 端口开启项目
 5. 由于功能过于简单，所以自己玩吧
 
 ## 账号
