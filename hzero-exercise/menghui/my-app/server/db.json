@@ -1,0 +1,22 @@
+{
+  "user": [
+    {
+      "name": "张三123123",
+      "student_id": 2018214001,
+      "gender": "male",
+      "id": 10000
+    },
+    {
+      "id": 10001,
+      "name": "李四",
+      "student_id": 2018214002,
+      "gender": "female"
+    },
+    {
+      "name": "王五213123",
+      "student_id": 2018214003,
+      "gender": "female",
+      "id": 10002
+    }
+  ]
+}
