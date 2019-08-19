@@ -1,0 +1,12 @@
+{
+  "user": [
+    {
+      "id": "10001",
+      "name": "hikari",
+      "email": "cmemory@aliyun.com",
+      "age": "18",
+      "address": "广东省深圳市大冲国际中心12楼",
+      "type": "view"
+    }
+  ]
+}
