@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import axios from '../../common/axios';
-import { Form, Input, Icon, Button } from 'antd';
+import { Form, Input, Icon, Button, message } from 'antd';
 import '../../assets/css/login.css';
 
 
@@ -20,13 +20,26 @@ class Logins extends React.Component {
     }
   }
 
+  // 存储登录信息至localStorage
+  setLoginMessage = () => {
+    localStorage.setItem("isLogin", "success");
+  }
+
+  // 登录按钮监听函数
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("login message is : ", values);
-        axios.post("http://localhost:3000/login", values).then((response) => {
-          console.log(response);
+        axios.post("http://localhost:5000/login", values).then((response) => {
+          if (response.status === 200 && response.data.isLogin === "success") {
+            console.log(response);
+            this.setLoginMessage();
+            const { history } = this.props;
+            history.replace("/");
+          } else {
+            message.warn("用户名或密码输入错误，请检查用户信息！");
+          }
         });
       }
     });

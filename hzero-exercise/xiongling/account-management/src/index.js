@@ -8,10 +8,8 @@ import React from 'react';
 import ReactDOM from "react-dom";
 // import ReactDOM from 'react-dom';
 import { AppContainer } from "react-hot-loader";
-import Route from './routes/';
 import './assets/css/index.css';
-import { Provider } from 'react-redux';
-import store from './store/store';
+import App from './App';
 // import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -19,20 +17,19 @@ const app = document.getElementById('root');
 
 const render = Component => {
   ReactDOM.render(
-    <Provider store={store}>
-      <AppContainer>
-        <Component />
-      </AppContainer>
-    </Provider>,
+    <AppContainer>
+      <Component />
+    </AppContainer>,
     app
   )
 }
 
-render(Route);
+render(App);
 
+// 热加载
 if (module.hot) {
-  module.hot.accept('./routes/', () => {
-    render(Route);
+  module.hot.accept('./App', () => {
+    render(App);
   });
 }
 
